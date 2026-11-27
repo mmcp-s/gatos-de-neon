@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="pt-PT" data-lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gatos de Néon BD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE occasion: a promo comic for a two-player co-op Roblox game, light atmospheric horror, 16+ first
+   IDEA a comic book drawn in the game's own G0 style sheet ("low poly gasto"): inked panels on a night page
+   PICTURE the panels, drawn in SVG from the design doc, with one playable boss panel in the middle
+   COLOUR G0 night #11151D and petrol blues; cyan and magenta only on the cats and their mechanisms; amber for effects
+   TYPE Fredoka (G0 display) for titles and sound effects + Nunito (G0 text) for lettering
+   LAYOUT one column up to 900px, two square panels per row above 600px, one column on phones */
+:root{color-scheme:dark;--bg:#11151D;--ink:#EEF2F7;--muted:#A9B4C4;--line:#0D1118;--cy:#00E6FF;--mg:#FF28C8;--am:#FFB000}
+*{box-sizing:border-box;min-width:0}
+html,body{margin:0}
+body{background:radial-gradient(#1A2230 1.2px,transparent 1.7px) 0 0/11px 11px var(--bg);color:var(--ink);font:400 17px/1.5 Nunito,system-ui,sans-serif;overflow-x:clip}
+html[data-lang=pt] [lang=en]{display:none}
+html[data-lang=en] [lang=pt]{display:none}
+.band{padding-block:clamp(24px,4vw,48px);padding-left:max(4vw,16px);padding-right:max(4vw,16px)}
+.wrap{max-width:900px;margin:0 auto}
+#prog{position:fixed;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--cy),var(--mg));transform-origin:0 50%;transform:scaleX(0);z-index:10}
+.top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:16px}
+h1{font:700 clamp(54px,10vw,104px)/.95 Fredoka,system-ui,sans-serif;letter-spacing:-.01em;margin:0}
+.sub{font:600 clamp(19px,2.4vw,24px)/1.3 Fredoka,system-ui,sans-serif;margin:12px 0 4px}
+.lead{margin:0;color:var(--muted);max-width:60ch}
+.langs{display:flex;border:2px solid var(--ink);border-radius:999px;overflow:hidden}
+.langs button{font:800 15px/1 Nunito,sans-serif;min-height:44px;min-width:56px;padding:0 14px;background:transparent;color:var(--ink);border:0;cursor:pointer}
+.langs button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.langs button:focus-visible{outline:3px solid var(--am);outline-offset:-3px}
+.comic{display:grid;gap:clamp(12px,2vw,18px)}
+.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,2vw,18px)}
+.panel{position:relative;margin:0;container-type:inline-size;border:3px solid var(--ink);background:#0D1118;overflow:hidden}
+.panel.w{aspect-ratio:8/5}
+.panel.s{aspect-ratio:1}
+.panel svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.inter{display:flex;flex-direction:column}
+.inter .art{position:relative;aspect-ratio:8/5;container-type:inline-size;overflow:hidden}
+.strip{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;padding:10px 14px;background:var(--ink);color:var(--bg);border-top:3px solid var(--line)}
+.strip p{margin:0;font:800 clamp(15px,2vw,18px)/1.3 Nunito,sans-serif;flex:1 1 260px}
+.hp{display:flex;align-items:center;gap:8px;font:800 13px/1 Nunito,sans-serif;white-space:nowrap}
+.hp i{display:block;width:26px;height:12px;border:2px solid var(--line);background:#FF3B3B}
+.won .hp i:first-of-type{background:transparent;animation:flash .6s both}
+.bub,.cap,.sfx,.rob{position:absolute;z-index:2;margin:0}
+.bub{--r:0deg;background:#fff;color:#0D1118;border:2.5px solid var(--line);border-radius:1.1em;padding:.4em .75em;font-weight:800;line-height:1.2;max-width:var(--w,40%);font-size:clamp(13px,2.4cqw,19px);transform-origin:30% 100%}
+.s .bub{font-size:clamp(13px,4.2cqw,19px)}
+.bub::before,.bub::after,.rob::before,.rob::after{content:"";position:absolute}
+.bub::before,.rob::before{bottom:-17px;left:18%;width:24px;height:18px;background:var(--line);clip-path:polygon(0 0,100% 0,15% 100%)}
+.bub::after{bottom:-12px;left:calc(18% + 4px);width:16px;height:15px;background:#fff;clip-path:polygon(0 0,100% 0,15% 100%)}
+.dr{transform-origin:70% 100%}
+.dr::before{left:auto;right:18%;clip-path:polygon(0 0,100% 0,85% 100%)}
+.dr::after{left:auto;right:calc(18% + 4px);clip-path:polygon(0 0,100% 0,85% 100%)}
+.rob{--r:0deg;background:#0D1118;color:#FF3B3B;border:2.5px solid #FF3B3B;border-radius:4px;padding:.35em .6em;font-weight:800;letter-spacing:.04em;line-height:1.2;max-width:var(--w,40%);font-size:clamp(13px,2.2cqw,17px)}
+.s .rob{font-size:clamp(13px,3.8cqw,17px)}
+.rob::before{background:#FF3B3B}
+.rob::after{bottom:-12px;left:calc(18% + 4px);width:16px;height:15px;background:#0D1118;clip-path:polygon(0 0,100% 0,15% 100%)}
+.rob.dr::after{left:auto;right:calc(18% + 4px);clip-path:polygon(0 0,100% 0,85% 100%)}
+.cap{--r:0deg;background:var(--ink);color:#0D1118;border:2.5px solid var(--line);padding:.3em .6em;max-width:var(--w,46%);font-size:clamp(13px,2.2cqw,18px);font-weight:700;line-height:1.25}
+.s .cap{font-size:clamp(13px,3.9cqw,18px)}
+.cap.big{font:600 clamp(17px,5.4cqw,26px)/1.15 Fredoka,sans-serif;max-width:92%}
+.sfx{--r:-8deg;font:700 clamp(28px,8cqw,64px)/1 Fredoka,sans-serif;color:var(--am);-webkit-text-stroke:2px var(--line);paint-order:stroke fill;text-shadow:3px 3px 0 var(--line);transform:rotate(var(--r));pointer-events:none;white-space:nowrap}
+.pol{font:800 14px Nunito,sans-serif;fill:#C4C8D0;letter-spacing:2px}
+.sign1{font:800 17px Nunito,sans-serif;fill:#EEF2F7}
+.sign2{font:800 15px Nunito,sans-serif;fill:#FF3B3B;letter-spacing:1px}
+.neon{font:700 26px Fredoka,sans-serif;fill:#FF96BE}
+.ca{--fur:#606876;--stripe:#3A404C;--light:#C4C8D0;--eye:#00E6FF}
+.cb{--fur:#E28638;--stripe:#B05A22;--light:#F8E2C8;--eye:#FF28C8}
+.cw{--fur:#E8E6E0;--stripe:#C9C5BC;--light:#FFFFFF;--eye:#FFD27A}
+.ck{--fur:#2B2E36;--stripe:#1E2027;--light:#5A5E68;--eye:#FFD27A}
+.cc{--fur:#F0DCC0;--stripe:#B07A4A;--light:#FFF4E6;--eye:#FFD27A}
+.act{position:absolute;z-index:3;--c:var(--cy);font:800 16px/1 Nunito,sans-serif;min-height:44px;padding:0 18px;border-radius:999px;background:#0D1118;color:#fff;border:3px solid var(--c);cursor:pointer;display:none;white-space:nowrap}
+.act.mg{--c:var(--mg)}
+.act::after{content:"";position:absolute;inset:-7px;border-radius:999px;border:3px solid var(--c);opacity:0;animation:ring 1.4s ease-out infinite;pointer-events:none}
+.act:hover{background:#1A2230}
+.act:focus-visible{outline:3px solid var(--am);outline-offset:4px}
+.act.on{background:var(--c);color:#0D1118}
+.act.on::after{display:none}
+.hide{display:none}
+[data-step="0"] #bMeow{display:block}
+[data-step="1"] #bCable{display:block;animation:pop .4s 1.7s both}
+[data-step="2"] #bC,[data-step="2"] #bM{display:block;animation:pop .4s .9s both}
+#meowB,#robQ,#zap,#down{visibility:hidden}
+[data-step="1"] #meowB,[data-step="2"] #meowB{visibility:visible;animation:pop .4s both}
+[data-step="1"] #robQ{visibility:visible;animation:pop .4s 1.5s both}
+[data-step="2"] #zap{visibility:visible;animation:zap 1.2s both}
+[data-step="3"] #down{visibility:visible;animation:pop .45s .2s both}
+.capg{transition:transform 1.6s cubic-bezier(.45,0,.3,1);transform-origin:500px 372px}
+[data-step="1"] .capg{transform:translate(183px,40px)}
+[data-step="2"] .capg{transform:translate(183px,62px);transition-duration:.4s}
+[data-step="3"] .capg{transform:translate(183px,66px) rotate(5deg);transition-duration:.6s}
+[data-step="3"] .capg use{--visor:#4A1F1F;--lamp:#3A404C}
+.cDn,.zapg{opacity:0}
+[data-step="2"] .cUp,[data-step="3"] .cUp{opacity:0}
+[data-step="2"] .cDn,[data-step="3"] .cDn{opacity:1}
+[data-step="2"] .zapg{animation:burst 1s .05s both}
+.bk{opacity:.3}
+[data-step="2"] .bk{opacity:1}
+.bk.on{fill:#fff}
+.spark{animation:soft .25s steps(2) infinite}
+.rain{animation:rain .5s linear infinite}
+.sweep{transform-origin:400px 10px;animation:sweep 4s ease-in-out infinite alternate}
+.flick{animation:soft 2.4s ease-in-out infinite alternate}
+.blink{animation:blink 1.6s steps(1) infinite}
+.eyes{animation:soft 3s ease-in-out infinite alternate}
+.lid{transform-origin:540px 74px;animation:look 6s ease-in-out infinite}
+.rise{animation:rise 4s linear infinite}
+.rise:nth-child(2){animation-delay:-1.3s}
+.rise:nth-child(3){animation-delay:-2.6s}
+.paw{animation:bob 1.2s ease-in-out infinite alternate}
+.night{position:absolute;inset:0;z-index:4;background:rgba(8,11,16,.96);display:grid;place-content:center;justify-items:center;gap:14px;padding:16px;text-align:center;transition:opacity .9s;font-weight:700}
+.night p{margin:0}
+.won .night{opacity:0;pointer-events:none}
+.btn{font:800 17px/1 Nunito,sans-serif;min-height:46px;padding:0 20px;background:var(--ink);color:var(--bg);border:3px solid var(--line);border-radius:999px;cursor:pointer}
+.btn:hover{background:#fff}
+.btn:focus-visible{outline:3px solid var(--am);outline-offset:3px}
+.play .bub,.play .cap,.play .sfx,.play>.rob{animation:pop .5s cubic-bezier(.3,1.5,.5,1) var(--d,.15s) both}
+.cta{border-top:3px solid var(--ink);margin-top:clamp(28px,4vw,48px)}
+.cta h2{font:700 clamp(36px,6vw,60px)/1 Fredoka,sans-serif;margin:0 0 10px}
+.cta .pitch{font-size:clamp(18px,2.2vw,21px);margin:0 0 22px;max-width:52ch}
+.lv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0 0 24px;padding:0;list-style:none}
+.lv li{background:#1A2230;border-radius:16px;padding:14px 16px}
+.lv b{display:block;font:600 19px/1.2 Fredoka,sans-serif;margin-bottom:4px}
+.lv span{color:var(--muted);font-size:15px}
+.endrow{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px}
+.endrow p{margin:0;color:var(--muted);font-size:14px;max-width:56ch}
+@keyframes pop{0%{opacity:0;transform:scale(.4) rotate(var(--r,0deg))}70%{opacity:1;transform:scale(1.07) rotate(var(--r,0deg))}100%{opacity:1;transform:rotate(var(--r,0deg))}}
+@keyframes ring{from{transform:scale(.85);opacity:.9}to{transform:scale(1.25);opacity:0}}
+@keyframes rain{to{transform:translateY(60px)}}
+@keyframes sweep{from{transform:rotate(-14deg)}to{transform:rotate(10deg)}}
+@keyframes soft{from{opacity:.55}to{opacity:1}}
+@keyframes blink{0%{opacity:1}50%{opacity:.15}}
+@keyframes look{0%,40%,100%{transform:scaleY(1)}44%{transform:scaleY(.1)}48%{transform:scaleY(1)}70%{transform:scaleY(.45)}80%{transform:scaleY(.45)}}
+@keyframes rise{from{transform:translateY(0);opacity:0}15%{opacity:.8}to{transform:translateY(-210px);opacity:0}}
+@keyframes bob{to{transform:translateY(-6px)}}
+@keyframes burst{0%{opacity:0}15%{opacity:1}30%{opacity:.3}45%{opacity:1}100%{opacity:0}}
+@keyframes zap{0%{opacity:0;transform:scale(.4) rotate(var(--r))}20%{opacity:1;transform:scale(1.1) rotate(var(--r))}75%{opacity:1;transform:rotate(var(--r))}100%{opacity:0;transform:rotate(var(--r))}}
+@keyframes flash{0%{background:#fff}100%{background:transparent}}
+@media(max-width:600px){.row{grid-template-columns:minmax(0,1fr)}.lv{grid-template-columns:minmax(0,1fr)}.act{font-size:14px;padding:0 12px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="prog" aria-hidden="true"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<defs>
+<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0B0F16"/><stop offset="1" stop-color="#1F3344"/></linearGradient>
+<linearGradient id="sewer" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#151D1C"/><stop offset="1" stop-color="#34453F"/></linearGradient>
+<linearGradient id="cone" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFF3B0" stop-opacity=".6"/><stop offset="1" stop-color="#FFF3B0" stop-opacity="0"/></linearGradient>
+<linearGradient id="cone2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF3B0" stop-opacity=".55"/><stop offset="1" stop-color="#FFF3B0" stop-opacity=".04"/></linearGradient>
+<radialGradient id="gA"><stop offset="0" stop-color="#FFBE78" stop-opacity=".55"/><stop offset="1" stop-color="#FFBE78" stop-opacity="0"/></radialGradient>
+<radialGradient id="gP"><stop offset="0" stop-color="#FF96BE" stop-opacity=".45"/><stop offset="1" stop-color="#FF96BE" stop-opacity="0"/></radialGradient>
+<radialGradient id="gC"><stop offset="0" stop-color="#00E6FF" stop-opacity=".32"/><stop offset="1" stop-color="#00E6FF" stop-opacity="0"/></radialGradient>
+<radialGradient id="gM"><stop offset="0" stop-color="#FF28C8" stop-opacity=".3"/><stop offset="1" stop-color="#FF28C8" stop-opacity="0"/></radialGradient>
+<radialGradient id="gY"><stop offset="0" stop-color="#FFD27A" stop-opacity=".8"/><stop offset="1" stop-color="#FFD27A" stop-opacity="0"/></radialGradient>
+<pattern id="rain" width="40" height="60" patternUnits="userSpaceOnUse"><path d="M30 0L24 18M12 30L6 48" stroke="#A9B4C4" stroke-width="2" stroke-linecap="round" opacity=".35"/></pattern>
+<pattern id="win" width="26" height="30" patternUnits="userSpaceOnUse"><rect x="6" y="6" width="8" height="10" fill="#FFBE78" opacity=".5"/><rect x="16" y="18" width="6" height="8" fill="#FFBE78" opacity=".22"/></pattern>
+<clipPath id="beams"><polygon points="110,14 180,14 250,500 30,500"/><polygon points="300,14 370,14 420,500 230,500"/></clipPath>
+<g id="cat">
+<path d="M66 82C30 78 28 34 52 26" fill="none" stroke="#0D1118" stroke-width="20" stroke-linecap="round"/>
+<path d="M66 82C30 78 28 34 52 26" fill="none" style="stroke:var(--fur)" stroke-width="14" stroke-linecap="round"/>
+<path d="M44 40C46 32 48 28 52 26" fill="none" style="stroke:var(--stripe)" stroke-width="14" stroke-linecap="round"/>
+<rect x="72" y="104" width="16" height="50" rx="8" style="fill:var(--stripe)" stroke="#0D1118" stroke-width="3"/>
+<rect x="150" y="104" width="16" height="50" rx="8" style="fill:var(--stripe)" stroke="#0D1118" stroke-width="3"/>
+<rect x="58" y="66" width="124" height="56" rx="28" style="fill:var(--fur)" stroke="#0D1118" stroke-width="4"/>
+<path d="M94 74v16M118 74v18M142 74v14" style="stroke:var(--stripe)" stroke-width="11" stroke-linecap="round"/>
+<rect x="92" y="106" width="16" height="50" rx="8" style="fill:var(--fur)" stroke="#0D1118" stroke-width="3"/>
+<rect x="166" y="106" width="16" height="50" rx="8" style="fill:var(--fur)" stroke="#0D1118" stroke-width="3"/>
+<ellipse cx="100" cy="154" rx="10" ry="5" style="fill:var(--light)"/>
+<ellipse cx="174" cy="154" rx="10" ry="5" style="fill:var(--light)"/>
+<path d="M166 48L177 18L194 40ZM197 40L215 18L224 50Z" style="fill:var(--fur)" stroke="#0D1118" stroke-width="4" stroke-linejoin="round"/>
+<path d="M203 40L213 28L217 44Z" style="fill:var(--light)"/>
+<rect x="160" y="34" width="66" height="58" rx="24" style="fill:var(--fur)" stroke="#0D1118" stroke-width="4"/>
+<ellipse cx="212" cy="76" rx="14" ry="10" style="fill:var(--light)"/>
+<ellipse cx="223" cy="71" rx="4" ry="3" fill="#E07A8A"/>
+<circle cx="203" cy="58" r="12" style="fill:var(--eye)" opacity=".3"/>
+<ellipse cx="203" cy="58" rx="6" ry="7.5" style="fill:var(--eye)"/>
+<ellipse cx="204.5" cy="58" rx="1.8" ry="5" fill="#0D1118"/>
+<circle cx="201" cy="55" r="1.8" fill="#fff"/>
+<path d="M164 86L172 106" style="stroke:var(--eye)" stroke-width="8" stroke-linecap="round"/>
+</g>
+<g id="box">
+<polygon points="4,0 116,0 120,4 120,80 0,80 0,4" fill="#C9A36E" stroke="#0D1118" stroke-width="3" stroke-linejoin="round"/>
+<rect x="94" y="2" width="24" height="76" fill="#000" opacity=".14"/>
+<rect x="50" y="1.5" width="16" height="77" fill="#B08A55"/>
+<path d="M6 4H114" stroke="#E3C48F" stroke-width="3" stroke-linecap="round"/>
+</g>
+<g id="cap">
+<rect x="72" y="182" width="14" height="40" fill="#9AA2AB" stroke="#0D1118" stroke-width="3"/>
+<rect x="136" y="182" width="14" height="40" fill="#9AA2AB" stroke="#0D1118" stroke-width="3"/>
+<rect x="64" y="214" width="30" height="58" rx="4" fill="#3A404C" stroke="#0D1118" stroke-width="4"/>
+<rect x="128" y="214" width="30" height="58" rx="4" fill="#3A404C" stroke="#0D1118" stroke-width="4"/>
+<rect x="54" y="268" width="50" height="18" rx="5" fill="#2A3040" stroke="#0D1118" stroke-width="4"/>
+<rect x="118" y="268" width="50" height="18" rx="5" fill="#2A3040" stroke="#0D1118" stroke-width="4"/>
+<polygon points="50,104 66,88 156,88 172,104 172,190 162,200 60,200 50,190" fill="#2A3F55" stroke="#0D1118" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="130,92 156,92 168,106 168,188 160,196 130,196" fill="#000" opacity=".18"/>
+<path d="M68 92H154" stroke="#6F8FA8" stroke-width="3" stroke-linecap="round"/>
+<path d="M52 142H170" stroke="#1E2E40" stroke-width="3"/>
+<text x="111" y="128" text-anchor="middle" class="pol">POLÍCIA</text>
+<rect x="60" y="174" width="104" height="10" fill="#C98A00"/>
+<path d="M72 174l-6 10M92 174l-6 10M112 174l-6 10M132 174l-6 10M152 174l-6 10" stroke="#2A3F55" stroke-width="3"/>
+<polygon points="172,118 220,118 230,128 230,148 220,154 172,154" fill="#4A525C" stroke="#0D1118" stroke-width="3" stroke-linejoin="round"/>
+<rect x="226" y="128" width="26" height="20" fill="#3A404C" stroke="#0D1118" stroke-width="3"/>
+<rect x="248" y="133" width="6" height="10" fill="#0D1118"/>
+<polygon points="76,58 86,48 136,48 146,58 146,88 76,88" fill="#3A5470" stroke="#0D1118" stroke-width="4" stroke-linejoin="round"/>
+<path d="M72 58H150" stroke="#24384C" stroke-width="7" stroke-linecap="round"/>
+<rect x="80" y="62" width="62" height="16" rx="6" style="fill:var(--visor,#FF3B3B)" opacity=".22"/>
+<rect x="84" y="66" width="54" height="7" rx="2" style="fill:var(--visor,#FF3B3B)"/>
+<path d="M88 48L82 28" stroke="#5A6470" stroke-width="3" stroke-linecap="round"/>
+<circle cx="82" cy="26" r="3.5" fill="#FF3B3B"/>
+<rect x="122" y="32" width="26" height="18" rx="3" fill="#9AA2AB" stroke="#0D1118" stroke-width="3"/>
+<circle cx="146" cy="41" r="7" style="fill:var(--lamp,#FFF3B0)" stroke="#0D1118" stroke-width="2"/>
+</g>
+<g id="van">
+<polygon points="0,40 12,28 200,28 212,40 212,150 0,150" fill="#2A3F55" stroke="#0D1118" stroke-width="4" stroke-linejoin="round"/>
+<path d="M14 32H198" stroke="#6F8FA8" stroke-width="3" stroke-linecap="round"/>
+<polygon points="212,70 250,70 280,100 290,150 212,150" fill="#3A5470" stroke="#0D1118" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="220,78 248,78 270,102 220,102" fill="#141A26" stroke="#0D1118" stroke-width="3"/>
+<rect x="20" y="46" width="150" height="70" rx="4" fill="#0D1118"/>
+<path d="M42 46V116M64 46V116M86 46V116M108 46V116M130 46V116M152 46V116" stroke="#9AA2AB" stroke-width="5"/>
+<text x="106" y="138" text-anchor="middle" class="pol">POLÍCIA</text>
+<rect x="90" y="18" width="40" height="10" rx="3" fill="#FF3B3B" stroke="#0D1118" stroke-width="2"/>
+<circle cx="56" cy="152" r="20" fill="#1A1F27" stroke="#0D1118" stroke-width="4"/><circle cx="56" cy="152" r="7" fill="#5A6470"/>
+<circle cx="246" cy="152" r="20" fill="#1A1F27" stroke="#0D1118" stroke-width="4"/><circle cx="246" cy="152" r="7" fill="#5A6470"/>
+</g>
+</defs>
+</svg>
+
+<header class="band">
+<div class="wrap top">
+<div>
+<h1>Gatos de Néon</h1>
+<p class="sub"><span lang="pt">Episódio 1: a cidade e os esgotos</span><span lang="en">Episode 1: the city and the sewers</span></p>
+<p class="lead"><span lang="pt">Desce para ler. A meio, os gatos vão precisar de ti.</span><span lang="en">Scroll to read. Halfway through, the cats will need your help.</span></p>
+</div>
+<div class="langs" role="group" aria-label="Língua / Language">
+<button type="button" id="lpt" aria-pressed="true">PT</button>
+<button type="button" id="len" aria-pressed="false">EN</button>
+</div>
+</div>
+</header>
+
+<main class="band" style="padding-top:0">
+<div class="wrap comic">
+
+<figure class="panel w">
+<svg viewBox="0 0 800 500" aria-hidden="true">
+<rect width="800" height="500" fill="url(#sky)"/>
+<g fill="#16263A"><rect x="250" y="90" width="100" height="410"/><rect x="355" y="40" width="105" height="460"/><rect x="465" y="110" width="95" height="390"/></g>
+<g fill="url(#win)"><rect x="250" y="90" width="100" height="410"/><rect x="355" y="40" width="105" height="460"/><rect x="465" y="110" width="95" height="390"/></g>
+<rect width="240" height="500" fill="#1F3344"/>
+<path d="M0 60H240M0 130H240M0 200H240M0 270H240M0 340H240M0 410H240" stroke="#1A2B3A" stroke-width="3"/>
+<path d="M240 0V500" stroke="#2E4A5C" stroke-width="5"/>
+<rect x="560" width="240" height="500" fill="#22394B"/>
+<path d="M560 0V500" stroke="#2E4A5C" stroke-width="5"/>
+<circle cx="110" cy="85" r="90" fill="url(#gA)" class="flick"/>
+<path d="M60 85Q100 52 140 85Q100 118 60 85ZM140 85L166 65V105Z" fill="none" stroke="#FFB000" stroke-width="5" stroke-linejoin="round"/>
+<circle cx="80" cy="80" r="4" fill="#FFB000"/>
+<g><rect x="132" y="170" width="100" height="70" rx="6" fill="#5A6470" stroke="#0D1118" stroke-width="3"/><circle cx="168" cy="205" r="24" fill="#3A404C" stroke="#0D1118" stroke-width="3"/><path d="M168 185V225M148 205H188" stroke="#5A6470" stroke-width="4"/><path d="M136 174H228" stroke="#9AA2AB" stroke-width="3"/></g>
+<circle cx="668" cy="160" r="120" fill="url(#gP)" class="flick"/>
+<rect x="640" y="58" width="56" height="204" rx="8" fill="#141A26" stroke="#FF96BE" stroke-width="4"/>
+<text class="neon" x="668" y="98" text-anchor="middle">H</text><text class="neon" x="668" y="134" text-anchor="middle">O</text><text class="neon" x="668" y="170" text-anchor="middle">T</text><text class="neon" x="668" y="206" text-anchor="middle">E</text><text class="neon" x="668" y="242" text-anchor="middle">L</text>
+<path d="M600 0V500" stroke="#0D1118" stroke-width="22"/><path d="M600 0V500" stroke="#5A6470" stroke-width="16"/><path d="M595 0V500" stroke="#9AA2AB" stroke-width="3" opacity=".6"/>
+<rect y="430" width="800" height="70" fill="#141A26"/>
+<path d="M0 430H800" stroke="#2E4A5C" stroke-width="3"/>
+<ellipse cx="420" cy="466" rx="130" ry="12" fill="#2E4A5C" opacity=".6"/>
+<path d="M360 466H470" stroke="#FF96BE" stroke-width="3" opacity=".4"/>
+<circle cx="390" cy="300" r="170" fill="url(#gA)" opacity=".5"/>
+<use href="#box" transform="translate(300,318) scale(1.4)"/>
+<use href="#box" transform="translate(478,374) scale(.7)"/>
+<use href="#cat" class="ca" transform="translate(306.2,277.4) scale(.26)"/>
+<use href="#cat" class="cb" transform="translate(463.8,277.4) scale(-.26,.26)"/>
+<rect class="rain" x="-40" y="-60" width="880" height="620" fill="url(#rain)"/>
+</svg>
+<p class="cap" style="left:3%;top:4%;--w:38%"><span lang="pt">Uma cidade cyberpunk, à escala de gato.</span><span lang="en">A cyberpunk city, at cat scale.</span></p>
+<p class="cap" style="right:3%;bottom:5%;--w:40%;--d:.8s"><span lang="pt">Caixas, canos e letreiros são o caminho.</span><span lang="en">Boxes, pipes and signs are the way up.</span></p>
+</figure>
+
+<div class="row">
+<figure class="panel s">
+<svg viewBox="0 0 400 400" aria-hidden="true">
+<rect width="400" height="400" fill="#1F3344"/>
+<path d="M0 70H400M0 140H400M0 210H400M0 280H400" stroke="#1A2B3A" stroke-width="3"/>
+<circle cx="205" cy="250" r="180" fill="url(#gC)"/>
+<rect y="338" width="400" height="62" fill="#141A26"/>
+<ellipse cx="210" cy="338" rx="160" ry="18" fill="#00E6FF" opacity=".22"/>
+<rect x="70" y="330" width="280" height="14" rx="7" fill="#00E6FF" stroke="#0D1118" stroke-width="3"/>
+<use href="#cat" class="ca" transform="translate(42.5,135) scale(1.25)"/>
+</svg>
+<p class="cap" style="left:4%;top:4%;--w:72%"><span lang="pt">Gato A. Coleira ciano: só ativa o que é ciano.</span><span lang="en">Cat A. Cyan collar: only cyan things answer to it.</span></p>
+</figure>
+<figure class="panel s">
+<svg viewBox="0 0 400 400" aria-hidden="true">
+<rect width="400" height="400" fill="#22394B"/>
+<path d="M0 70H400M0 140H400M0 210H400M0 280H400" stroke="#1A2B3A" stroke-width="3"/>
+<circle cx="195" cy="250" r="180" fill="url(#gM)"/>
+<rect y="338" width="400" height="62" fill="#141A26"/>
+<ellipse cx="190" cy="338" rx="160" ry="18" fill="#FF28C8" opacity=".22"/>
+<rect x="50" y="330" width="280" height="14" rx="7" fill="#FF28C8" stroke="#0D1118" stroke-width="3"/>
+<use href="#cat" class="cb" transform="translate(357.5,135) scale(-1.25,1.25)"/>
+</svg>
+<p class="cap" style="right:4%;top:4%;--w:72%;--d:.4s"><span lang="pt">Gato B. Coleira magenta: só ativa o que é magenta.</span><span lang="en">Cat B. Magenta collar: only magenta things answer to it.</span></p>
+</figure>
+</div>
+
+<figure class="panel w">
+<svg viewBox="0 0 800 500" aria-hidden="true">
+<rect width="800" height="500" fill="#2E4A5C"/>
+<path d="M0 70H800M0 140H800M0 210H800M0 280H800M0 350H800" stroke="#284254" stroke-width="3"/>
+<circle cx="300" cy="120" r="120" fill="url(#gA)" class="flick"/>
+<rect x="288" y="104" width="24" height="14" rx="3" fill="#FFBE78" stroke="#0D1118" stroke-width="3"/>
+<rect x="335" y="185" width="180" height="240" fill="#0D1118" stroke="#5A6470" stroke-width="10"/>
+<rect x="340" y="190" width="170" height="62" fill="#5A6470"/>
+<path d="M340 206H510M340 222H510M340 238H510" stroke="#3A404C" stroke-width="3"/>
+<path d="M340 252H510" stroke="#9AA2AB" stroke-width="4"/>
+<rect x="400" y="146" width="50" height="30" rx="4" fill="#3A404C" stroke="#0D1118" stroke-width="3"/>
+<circle cx="425" cy="161" r="5" fill="#00E6FF"/>
+<path d="M180 412V300H425V176" fill="none" stroke="#00E6FF" stroke-width="4" stroke-linejoin="round"/>
+<path d="M670 412V320H800" fill="none" stroke="#FF28C8" stroke-width="4" opacity=".55" stroke-linejoin="round"/>
+<rect y="420" width="800" height="80" fill="#141A26"/>
+<path d="M0 420H800" stroke="#5A6470" stroke-width="3"/>
+<ellipse cx="180" cy="418" rx="90" ry="10" fill="#00E6FF" opacity=".3"/>
+<rect x="110" y="410" width="140" height="10" rx="5" fill="#00E6FF" stroke="#0D1118" stroke-width="2.5"/>
+<rect x="600" y="410" width="140" height="10" rx="5" fill="#FF28C8" opacity=".6" stroke="#0D1118" stroke-width="2.5"/>
+<g class="paw" fill="#EEF2F7"><ellipse cx="670" cy="372" rx="10" ry="8"/><circle cx="659" cy="359" r="4.5"/><circle cx="666" cy="353" r="4.5"/><circle cx="675" cy="353" r="4.5"/><circle cx="682" cy="360" r="4.5"/></g>
+<use href="#cat" class="ca" transform="translate(128,349.6) scale(.4)"/>
+<use href="#cat" class="cb" transform="translate(388,357.6) scale(.4)"/>
+</svg>
+<p class="cap" style="left:3%;top:4%;--w:42%"><span lang="pt">Sozinho, nenhum passa. A dois, abrem caminho.</span><span lang="en">Alone, neither gets through. Together, they open the way.</span></p>
+<p class="cap" style="right:3%;top:4%;--w:36%;--d:.7s"><span lang="pt">Sem chat: um miau e uma pata chegam.</span><span lang="en">No chat needed: a meow and a paw will do.</span></p>
+<p class="bub" style="left:53%;top:50%;--d:1.1s"><span lang="pt">Miau!</span><span lang="en">Meow!</span></p>
+</figure>
+
+<div class="row">
+<figure class="panel s">
+<svg viewBox="0 0 400 400" aria-hidden="true">
+<rect width="400" height="400" fill="#1F3344"/>
+<path d="M0 60H400M0 130H400M0 200H400M0 270H400M0 340H400" stroke="#1A2B3A" stroke-width="3"/>
+<rect x="80" y="110" width="240" height="62" rx="6" fill="#141A26" stroke="#C4C8D0" stroke-width="3"/>
+<text class="sign1" x="200" y="137" text-anchor="middle">POLÍCIA DA CIDADE</text>
+<text class="sign2" x="200" y="161" text-anchor="middle">ZONA VIGIADA</text>
+<rect y="380" width="400" height="20" fill="#141A26"/>
+<path d="M0 380H400" stroke="#2E4A5C" stroke-width="3"/>
+<use href="#van" transform="translate(150,244) scale(.8)"/>
+<g class="eyes"><circle cx="186" cy="300" r="3.5" fill="#FFD27A"/><circle cx="196" cy="300" r="3.5" fill="#FFD27A"/><circle cx="232" cy="312" r="3.5" fill="#FF96BE"/><circle cx="242" cy="312" r="3.5" fill="#FF96BE"/><circle cx="268" cy="294" r="3.5" fill="#EEF2F7"/><circle cx="277" cy="294" r="3.5" fill="#EEF2F7"/></g>
+<use href="#cat" class="cb" transform="translate(50.6,320.7) scale(.38)"/>
+<use href="#box" transform="translate(28,334) scale(.62)"/>
+<polygon class="sweep" points="400,10 110,400 270,400" fill="url(#cone2)"/>
+<rect class="rain" x="-40" y="-60" width="480" height="520" fill="url(#rain)"/>
+</svg>
+<p class="cap" style="left:4%;top:4%;--w:70%"><span lang="pt">Mas a cidade tem dono. Os robôs da polícia caçam gatos de néon.</span><span lang="en">But the city has an owner. Police robots hunt neon cats.</span></p>
+<p class="bub" style="left:44%;top:49%;--d:.9s"><span lang="pt">miau…</span><span lang="en">meow…</span></p>
+</figure>
+<figure class="panel s">
+<svg viewBox="0 0 400 400" aria-hidden="true">
+<rect width="400" height="400" fill="url(#sky)"/>
+<g fill="#16263A"><rect x="0" y="150" width="70" height="250"/><rect x="300" y="120" width="100" height="280"/></g>
+<g fill="url(#win)"><rect x="0" y="150" width="70" height="250"/><rect x="300" y="120" width="100" height="280"/></g>
+<rect y="392" width="400" height="8" fill="#141A26"/>
+<polygon points="240,100 400,30 400,320 240,116" fill="url(#cone)" class="flick"/>
+<use href="#cap" transform="translate(72,59) scale(1.15)"/>
+<rect class="rain" x="-40" y="-60" width="480" height="520" fill="url(#rain)"/>
+</svg>
+<p class="cap" style="left:4%;top:4%;--w:72%"><span lang="pt">O Capitão Gaiola. Não se luta com ele: engana-se.</span><span lang="en">Captain Cage. You don't fight him: you outsmart him.</span></p>
+<p class="rob dr" style="left:4%;top:39%;--w:34%;--d:.8s"><span lang="pt">GATO DETETADO.</span><span lang="en">CAT DETECTED.</span></p>
+<p class="sfx" style="left:3%;bottom:5%;--d:.4s"><span lang="pt">CLANC… CLANC…</span><span lang="en">CLANK… CLANK…</span></p>
+</figure>
+</div>
+
+<figure class="panel inter" id="fight">
+<div class="art" id="art" data-step="0">
+<svg viewBox="0 0 800 500" aria-hidden="true">
+<rect width="800" height="500" fill="url(#sky)"/>
+<g fill="#16263A"><rect x="0" y="120" width="120" height="252"/><rect x="330" y="170" width="100" height="202"/><rect x="560" y="140" width="90" height="232"/><rect x="680" y="100" width="120" height="272"/></g>
+<g fill="url(#win)"><rect x="0" y="120" width="120" height="252"/><rect x="330" y="170" width="100" height="202"/><rect x="560" y="140" width="90" height="232"/><rect x="680" y="100" width="120" height="272"/></g>
+<path d="M190 372L230 70L270 372M200 300H260M210 220H250M220 140H240" fill="none" stroke="#3A4658" stroke-width="5"/>
+<circle class="blink" cx="230" cy="64" r="6" fill="#FF3B3B"/>
+<rect y="372" width="800" height="128" fill="#2E4A5C"/>
+<path d="M0 410H800M0 452H800M120 372L100 500M300 372L295 500M500 372L505 500M700 372L720 500" stroke="#1F3344" stroke-width="3"/>
+<path d="M0 372H800" stroke="#9AA2AB" stroke-width="3"/>
+<ellipse cx="505" cy="420" rx="125" ry="24" fill="#1A2B3A"/>
+<ellipse cx="505" cy="418" rx="104" ry="16" fill="#22394B"/>
+<path d="M450 420H540M470 428H520" stroke="#FF96BE" stroke-width="3" opacity=".35"/>
+<use href="#box" transform="translate(30,292)"/>
+<use href="#cat" class="cb" transform="translate(53.4,242.1) scale(.32)"/>
+<rect x="642" y="182" width="14" height="190" fill="#5A6470" stroke="#0D1118" stroke-width="3"/>
+<rect x="628" y="170" width="42" height="16" rx="3" fill="#3A404C" stroke="#0D1118" stroke-width="3"/>
+<g class="cUp"><path d="M650 184C612 200 592 250 586 318" fill="none" stroke="#0D1118" stroke-width="10" stroke-linecap="round"/><path d="M650 184C612 200 592 250 586 318" fill="none" stroke="#00E6FF" stroke-width="6" stroke-linecap="round"/><g class="spark" stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M586 322l-8 8M586 322l9 7M586 322v11"/></g></g>
+<g class="cDn"><path d="M650 184C604 230 548 330 528 414" fill="none" stroke="#0D1118" stroke-width="10" stroke-linecap="round"/><path d="M650 184C604 230 548 330 528 414" fill="none" stroke="#00E6FF" stroke-width="6" stroke-linecap="round"/></g>
+<use href="#cat" class="ca" transform="translate(766.6,322.1) scale(-.32,.32)"/>
+<g class="capg">
+<g transform="translate(230,147) scale(.78)">
+<use href="#cap"/>
+<circle class="bk" id="kC" cx="60" cy="112" r="9" fill="#00E6FF" stroke="#0D1118" stroke-width="3"/>
+<circle class="bk" id="kM" cx="60" cy="160" r="9" fill="#FF28C8" stroke="#0D1118" stroke-width="3"/>
+</g>
+</g>
+<g class="zapg" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+<path d="M430 410l20-24 8 14 18-30" stroke="#FFB000"/><path d="M590 400l-16-28-10 12-14-26" stroke="#00E6FF"/><path d="M470 300l12 18-14 6 16 20" stroke="#FFB000"/><path d="M560 290l-10 22 14 2-12 22" stroke="#00E6FF"/>
+</g>
+<rect class="rain" x="-40" y="-60" width="880" height="620" fill="url(#rain)"/>
+</svg>
+<button type="button" class="act mg" id="bMeow" style="left:3%;top:33%"><span lang="pt">Miar</span><span lang="en">Meow</span></button>
+<p class="bub dr" id="meowB" style="left:3%;top:33%"><span lang="pt">MIAU!</span><span lang="en">MEOW!</span></p>
+<p class="rob dr" id="robQ" style="left:24%;top:6%;--w:30%"><span lang="pt">SOM DETETADO.</span><span lang="en">NOISE DETECTED.</span></p>
+<button type="button" class="act" id="bCable" style="right:2%;top:6%"><span lang="pt">Puxar o cabo</span><span lang="en">Pull the cable</span></button>
+<p class="sfx" id="zap" style="left:26%;top:30%;--r:-10deg">ZZZAP!</p>
+<button type="button" class="act" id="bC" style="left:33%;top:48%" aria-pressed="false"><span lang="pt">Ciano</span><span lang="en">Cyan</span></button>
+<button type="button" class="act mg" id="bM" style="left:33%;top:72%" aria-pressed="false"><span lang="pt">Magenta</span><span lang="en">Magenta</span></button>
+<p class="sfx" id="down" style="left:44%;top:12%;--r:6deg">CLONC.</p>
+</div>
+<div class="strip">
+<p id="stepTxt" aria-live="polite"></p>
+<div class="hp" aria-hidden="true"><span lang="pt">Capitão Gaiola</span><span lang="en">Captain Cage</span> <i></i><i></i><i></i></div>
+</div>
+</figure>
+
+<figure class="panel w gate">
+<svg viewBox="0 0 800 500" aria-hidden="true">
+<rect width="800" height="500" fill="url(#sky)"/>
+<g fill="#16263A"><rect x="0" y="110" width="140" height="262"/><rect x="250" y="160" width="110" height="212"/><rect x="620" y="90" width="180" height="282"/></g>
+<g fill="url(#win)"><rect x="0" y="110" width="140" height="262"/><rect x="250" y="160" width="110" height="212"/><rect x="620" y="90" width="180" height="282"/></g>
+<rect y="372" width="800" height="128" fill="#2E4A5C"/>
+<path d="M0 410H800M0 452H800M120 372L100 500M400 372L398 500M700 372L720 500" stroke="#1F3344" stroke-width="3"/>
+<path d="M0 372H800" stroke="#9AA2AB" stroke-width="3"/>
+<ellipse cx="300" cy="400" rx="70" ry="44" fill="#2FA39A" opacity=".16"/>
+<ellipse cx="300" cy="420" rx="64" ry="16" fill="#0D1118" stroke="#5A6470" stroke-width="5"/>
+<ellipse cx="190" cy="430" rx="52" ry="12" fill="#5A6470" stroke="#0D1118" stroke-width="3"/>
+<path d="M150 430H230M190 420V440" stroke="#3A404C" stroke-width="3"/>
+<use href="#van" transform="translate(470,226) scale(.9)"/>
+<polygon points="440,252 470,260 470,360 440,370" fill="#2A3F55" stroke="#0D1118" stroke-width="3" stroke-linejoin="round"/>
+<path d="M380 300l40-14M372 318l42-10M388 336l30-6" stroke="#EEF2F7" stroke-width="3" stroke-linecap="round" opacity=".5"/>
+<use href="#cat" class="cw" transform="translate(340,330) rotate(-25) scale(-.3,.3) translate(-130,-100)"/>
+<use href="#cat" class="cb" transform="translate(48.4,322.1) scale(.32)"/>
+<use href="#cat" class="ca" transform="translate(123.4,334.1) scale(.32)"/>
+<rect class="rain" x="-40" y="-60" width="880" height="620" fill="url(#rain)"/>
+</svg>
+<p class="cap" style="left:3%;top:4%;--w:44%"><span lang="pt">A carrinha abre-se. Um gato branco foge… pelo esgoto.</span><span lang="en">The van opens. A white cat runs… down the drain.</span></p>
+<p class="bub" style="left:12%;top:40%;--d:.9s"><span lang="pt">Miau?</span><span lang="en">Meow?</span></p>
+<p class="cap" style="right:3%;bottom:5%;--w:40%;--d:1.4s"><span lang="pt">Os outros gatos foram levados lá para baixo.</span><span lang="en">The other cats were taken down below.</span></p>
+<div class="night"><p><span lang="pt">O Capitão ainda está ligado.</span><span lang="en">Captain Cage is still switched on.</span></p><button type="button" class="btn" id="back"><span lang="pt">Voltar à luta</span><span lang="en">Back to the fight</span></button></div>
+</figure>
+
+<figure class="panel w gate">
+<svg viewBox="0 0 800 500" aria-hidden="true">
+<rect width="800" height="500" fill="url(#sewer)"/>
+<path d="M-20 300Q80 150 180 300M180 300Q280 150 380 300" fill="none" stroke="#2A3835" stroke-width="20"/>
+<rect x="110" y="0" width="70" height="14" fill="#0D1118"/><path d="M124 0V14M138 0V14M152 0V14M166 0V14" stroke="#5A6470" stroke-width="3"/>
+<rect x="300" y="0" width="70" height="14" fill="#0D1118"/><path d="M314 0V14M328 0V14M342 0V14M356 0V14" stroke="#5A6470" stroke-width="3"/>
+<polygon points="110,14 180,14 250,500 30,500" fill="#00E6FF" opacity=".08"/>
+<polygon points="300,14 370,14 420,500 230,500" fill="#FF28C8" opacity=".07"/>
+<g clip-path="url(#beams)"><rect class="rain" x="0" y="-60" width="440" height="560" fill="url(#rain)"/></g>
+<polygon points="540,90 230,450 430,450" fill="#FFD27A" opacity=".08"/>
+<rect y="420" width="800" height="30" fill="#4A5650"/>
+<path d="M0 421H800" stroke="#B9BAB2" stroke-width="3" opacity=".45"/>
+<rect y="450" width="800" height="50" fill="#1F3532"/>
+<path d="M0 456H800" stroke="#2FA39A" stroke-width="3" opacity=".45"/>
+<path d="M444 340L410 400L420 448M600 340L630 400L618 448" fill="none" stroke="#0D1118" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M444 340L410 400L420 448M600 340L630 400L618 448" fill="none" stroke="#5E4230" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M432 172L330 262L304 392" fill="none" stroke="#0D1118" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M432 172L330 262L304 392" fill="none" stroke="#5A4030" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M292 392h24l6 22h-12l-6-10-6 10h-12z" fill="#5A6470" stroke="#0D1118" stroke-width="3" stroke-linejoin="round"/>
+<rect x="498" y="54" width="14" height="62" fill="#5A4030" stroke="#0D1118" stroke-width="3"/>
+<rect x="548" y="44" width="14" height="72" fill="#5A4030" stroke="#0D1118" stroke-width="3"/>
+<polygon points="420,140 450,110 594,110 624,140 628,330 604,356 444,356 420,330" fill="#7A5238" stroke="#0D1118" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="580,114 594,114 620,142 624,328 602,350 580,350" fill="#000" opacity=".18"/>
+<path d="M452 116H590" stroke="#B88A64" stroke-width="3" stroke-linecap="round"/>
+<rect x="424" y="166" width="200" height="12" fill="#5E3E2A"/>
+<rect x="462" y="200" width="122" height="104" rx="12" fill="#2FA39A" opacity=".5" stroke="#0D1118" stroke-width="4"/>
+<use href="#cat" class="ck" transform="translate(470,252) scale(.2)"/>
+<use href="#cat" class="cw" transform="translate(578,256) scale(-.2,.2)"/>
+<path d="M474 212L520 206" stroke="#DFF7F3" stroke-width="3" stroke-linecap="round" opacity=".6"/>
+<path d="M624 196C700 210 726 320 690 424" fill="none" stroke="#0D1118" stroke-width="28" stroke-linecap="round"/>
+<path d="M624 196C700 210 726 320 690 424" fill="none" stroke="#4A525C" stroke-width="20" stroke-linecap="round"/>
+<rect x="674" y="418" width="34" height="20" rx="4" fill="#3A404C" stroke="#0D1118" stroke-width="3"/>
+<circle cx="540" cy="86" r="70" fill="url(#gY)" class="flick"/>
+<polygon points="430,30 470,-14 610,-14 650,30 650,70 430,70" fill="#5A3E2C" stroke="#0D1118" stroke-width="5" stroke-linejoin="round"/>
+<path d="M440 36Q540 6 640 36" fill="none" stroke="#7A5238" stroke-width="5" stroke-linecap="round"/>
+<polygon points="444,70 636,70 622,108 458,108" fill="#0D1118" stroke="#0D1118" stroke-width="5" stroke-linejoin="round"/>
+<g class="lid"><circle cx="540" cy="88" r="14" fill="#FFD27A"/><circle cx="540" cy="88" r="6" fill="#FFF3B0"/></g>
+<path d="M450 70L460 82L470 70L480 82L490 70L500 82L510 70L520 82L530 70M550 70L560 82L570 70L580 82L590 70L600 82L610 70L620 82L630 70" fill="#B9BAB2" stroke="#0D1118" stroke-width="2" stroke-linejoin="round"/>
+<path d="M462 108L470 98L478 108L486 98L494 108M586 108L594 98L602 108L610 98L618 108" fill="#B9BAB2" stroke="#0D1118" stroke-width="2" stroke-linejoin="round"/>
+<use href="#cat" class="ca" transform="translate(64,388.8) scale(.2)"/>
+<use href="#cat" class="cb" transform="translate(104,388.8) scale(.2)"/>
+<path d="M0 412H290" stroke="#0D1118" stroke-width="24"/>
+<path d="M0 412H290" stroke="#AA7854" stroke-width="18"/>
+<path d="M0 406H290" stroke="#C9A27F" stroke-width="3" opacity=".6"/>
+<rect x="60" y="400" width="12" height="24" fill="#8A5E3E" stroke="#0D1118" stroke-width="2"/><rect x="190" y="400" width="12" height="24" fill="#8A5E3E" stroke="#0D1118" stroke-width="2"/>
+</svg>
+<p class="cap" style="left:3%;top:4%;--w:42%"><span lang="pt">Nos esgotos, a Draga trabalha. E escuta.</span><span lang="en">In the sewers, the Draga, a giant drainage pump, works. And listens.</span></p>
+<p class="cap" style="right:3%;bottom:4%;--w:40%;--d:1s"><span lang="pt">Aqui não se luta: esconde-te e não faças barulho.</span><span lang="en">No fighting here: hide, and don't make a sound.</span></p>
+<p class="sfx" style="right:2%;top:30%;--d:.5s;--r:4deg;font-size:clamp(22px,5cqw,40px)">FFFHHH…</p>
+<div class="night"></div>
+</figure>
+
+<div class="row">
+<figure class="panel s gate">
+<svg viewBox="0 0 400 400" aria-hidden="true">
+<rect width="400" height="400" fill="#151D1C"/>
+<rect x="36" y="40" width="328" height="324" rx="28" fill="#7A5238" stroke="#0D1118" stroke-width="5"/>
+<path d="M60 48H340" stroke="#B88A64" stroke-width="3" stroke-linecap="round"/>
+<g fill="#5E3E2A" stroke="#0D1118" stroke-width="2"><circle cx="58" cy="62" r="6"/><circle cx="342" cy="62" r="6"/><circle cx="58" cy="342" r="6"/><circle cx="342" cy="342" r="6"/><circle cx="200" cy="54" r="6"/><circle cx="200" cy="350" r="6"/></g>
+<rect x="66" y="76" width="268" height="256" rx="18" fill="#1F3532" stroke="#0D1118" stroke-width="4"/>
+<rect x="68" y="112" width="264" height="218" rx="14" fill="#2FA39A" opacity=".55"/>
+<path d="M68 114q22-10 44 0t44 0t44 0t44 0t44 0t44 0" fill="none" stroke="#DFF7F3" stroke-width="3" opacity=".6"/>
+<use href="#cat" class="cw" transform="translate(76,198) scale(.42)"/>
+<use href="#cat" class="ck" transform="translate(330,212) scale(-.38,.38)"/>
+<g fill="#DFF7F3" opacity=".7"><circle class="rise" cx="150" cy="320" r="5"/><circle class="rise" cx="240" cy="320" r="4"/><circle class="rise" cx="300" cy="320" r="6"/></g>
+<path d="M96 300L150 96" stroke="#fff" stroke-width="10" stroke-linecap="round" opacity=".18"/>
+</svg>
+<p class="cap" style="left:4%;bottom:4%;--w:80%"><span lang="pt">Na barriga dela, os gatos que faltam.</span><span lang="en">In her belly, the missing cats.</span></p>
+<div class="night"></div>
+</figure>
+<figure class="panel s gate">
+<svg viewBox="0 0 400 400" aria-hidden="true">
+<rect width="400" height="400" fill="url(#sewer)"/>
+<rect x="250" y="20" width="110" height="22" fill="#0D1118"/><path d="M266 20V42M284 20V42M302 20V42M320 20V42M338 20V42" stroke="#5A6470" stroke-width="3"/>
+<polygon points="250,42 300,42 210,300 120,300" fill="#00E6FF" opacity=".12"/>
+<polygon points="310,42 360,42 320,300 220,300" fill="#FF28C8" opacity=".1"/>
+<rect y="300" width="400" height="100" fill="#4A5650"/>
+<path d="M0 301H400" stroke="#B9BAB2" stroke-width="3" opacity=".5"/>
+<use href="#cat" class="ca" transform="translate(101.5,229.8) scale(.45)"/>
+<use href="#cat" class="cb" transform="translate(191.5,229.8) scale(.45)"/>
+</svg>
+<p class="cap big" style="left:4%;bottom:5%"><span lang="pt">Nenhum gato chega ao fim sozinho.</span><span lang="en">No cat makes it to the end alone.</span></p>
+<div class="night"></div>
+</figure>
+</div>
+
+</div>
+</main>
+
+<section class="band cta">
+<div class="wrap">
+<h2>Gatos de Néon</h2>
+<p class="pitch"><span lang="pt">Um obby cooperativo para dois na Roblox. Chama alguém, escolhe uma cor e sobe a cidade a dois.</span><span lang="en">A two-player co-op obby on Roblox. Bring someone, pick a colour and climb the city together.</span></p>
+<ul class="lv">
+<li><b><span lang="pt">Nível 1: a cidade</span><span lang="en">Level 1: the city</span></b><span><span lang="pt">Becos, telhados e o Capitão Gaiola</span><span lang="en">Alleys, rooftops and Captain Cage</span></span></li>
+<li><b><span lang="pt">Nível 2: os esgotos</span><span lang="en">Level 2: the sewers</span></b><span><span lang="pt">Válvulas, água e a Draga</span><span lang="en">Valves, water and the Draga</span></span></li>
+<li><b><span lang="pt">Nível 3: o bairro vertical</span><span lang="en">Level 3: the vertical district</span></b><span><span lang="pt">Em construção</span><span lang="en">In the works</span></span></li>
+</ul>
+<div class="endrow">
+<button type="button" class="btn" id="again"><span lang="pt">Ler outra vez</span><span lang="en">Read again</span></button>
+<p><span lang="pt">Ilustrações feitas para esta BD a partir do documento de design. Não são capturas do jogo.</span><span lang="en">Illustrations drawn for this comic from the design document. They are not in-game screenshots.</span></p>
+</div>
+</div>
+</section>
+
+<script>
+{
+const root=document.documentElement;
+const art=document.getElementById('art');
+const txt=document.getElementById('stepTxt');
+const T={
+pt:{s0:'O Capitão segue o barulho. Faz o Gato B miar.',s1:'Está na poça! O Gato A puxa o cabo ciano.',s2:'Atordoado! Pisem os dois botões ao mesmo tempo.',s2b:'Falta o outro botão!',s2c:'Tem de ser ao mesmo tempo. Outra vez!',s3:'Desligado! No jogo são três voltas, e ele fica mais rápido a cada uma.'},
+en:{s0:'Captain Cage follows noise. Make Cat B meow.',s1:'He is in the puddle! Cat A pulls the cyan cable.',s2:'Stunned! Step on both buttons at the same time.',s2b:'Now the other button!',s2c:'It has to be at the same time. Again!',s3:'Shut down! In the game it takes three rounds, and he gets faster each time.'}
+};
+let step=0,lang='pt',msg='s0',timer=null;
+const pressed={c:false,m:false};
+const bC=document.getElementById('bC'),bM=document.getElementById('bM');
+const kC=document.getElementById('kC'),kM=document.getElementById('kM');
+const say=k=>{msg=k;txt.textContent=T[lang][k]};
+const panels=[...document.querySelectorAll('.panel')];
+const io='IntersectionObserver' in window?new IntersectionObserver(es=>{for(const e of es){if(e.isIntersecting){e.target.classList.add('play');io.unobserve(e.target)}}},{threshold:.35}):null;
+const watch=list=>list.forEach(p=>{p.classList.remove('play');if(io)io.observe(p);else p.classList.add('play')});
+const clearPress=()=>{pressed.c=pressed.m=false;[bC,bM].forEach(b=>{b.classList.remove('on');b.setAttribute('aria-pressed','false')});[kC,kM].forEach(k=>k.classList.remove('on'))};
+const setStep=n=>{step=n;art.dataset.step=String(n);clearTimeout(timer);clearPress();root.classList.toggle('won',n>=3);say('s'+n)};
+const setLang=l=>{lang=l==='en'?'en':'pt';root.dataset.lang=lang;root.lang=lang==='en'?'en':'pt-PT';document.getElementById('lpt').setAttribute('aria-pressed',String(lang==='pt'));document.getElementById('len').setAttribute('aria-pressed',String(lang==='en'));say(msg);try{localStorage.setItem('gdn-lang',lang)}catch(e){}};
+document.getElementById('lpt').addEventListener('click',()=>setLang('pt'));
+document.getElementById('len').addEventListener('click',()=>setLang('en'));
+document.getElementById('bMeow').addEventListener('click',()=>{if(step===0)setStep(1)});
+document.getElementById('bCable').addEventListener('click',()=>{if(step===1)setStep(2)});
+const press=k=>{
+if(step!==2)return;
+pressed[k]=true;
+const b=k==='c'?bC:bM;b.classList.add('on');b.setAttribute('aria-pressed','true');(k==='c'?kC:kM).classList.add('on');
+if(pressed.c&&pressed.m){setStep(3);watch([...document.querySelectorAll('.gate')]);return}
+say('s2b');clearTimeout(timer);
+timer=setTimeout(()=>{clearPress();say('s2c')},2500);
+};
+bC.addEventListener('click',()=>press('c'));
+bM.addEventListener('click',()=>press('m'));
+document.getElementById('back').addEventListener('click',()=>document.getElementById('fight').scrollIntoView({behavior:'smooth',block:'center'}));
+document.getElementById('again').addEventListener('click',()=>{setStep(0);watch(panels);window.scrollTo({top:0,behavior:'smooth'})});
+const bar=document.getElementById('prog');
+const onScroll=()=>{const h=root.scrollHeight-window.innerHeight;bar.style.transform='scaleX('+(h>0?Math.min(1,window.scrollY/h):0)+')'};
+window.addEventListener('scroll',onScroll,{passive:true});
+window.addEventListener('resize',onScroll);
+const start=d=>{
+let l=d&&d.lang;
+if(!l){try{l=localStorage.getItem('gdn-lang')}catch(e){}}
+if(location.hash==='#en')l='en';
+setLang(l||'pt');
+setStep(d&&d.step>=0&&d.step<=3?d.step:0);
+watch(panels);onScroll();
+};
+window.claude?.hot?.snapshot?.(()=>({step,lang}));
+if(window.claude?.hot?.ready)window.claude.hot.ready(start);else start(window.claude?.hot?.data??{});
+}
+</script>
+</body>
+</html>
