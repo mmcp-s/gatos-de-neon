@@ -294,7 +294,7 @@ h1{font:700 clamp(54px,10vw,104px)/.95 Fredoka,system-ui,sans-serif;letter-spaci
 <rect x="70" y="330" width="280" height="14" rx="7" fill="#00E6FF" stroke="#0D1118" stroke-width="3"/>
 <use href="#cat" class="ca" transform="translate(42.5,135) scale(1.25)"/>
 </svg>
-<p class="cap" style="left:4%;top:4%;--w:72%"><span lang="pt">Gato A. Coleira ciano: só ativa o que é ciano.</span><span lang="en">Cat A. Cyan collar: only cyan things answer to it.</span></p>
+<p class="cap" style="left:4%;top:4%;--w:72%"><span lang="pt-PT">Este é o Píxel. Coleira ciano: só ativa o que é ciano.</span><span lang="pt-BR">Este é o Pixel. Coleira ciano: só ativa o que é ciano.</span><span lang="en">This is Pixel. Cyan collar: only cyan things answer to him.</span></p>
 </figure>
 <figure class="panel s">
 <svg viewBox="0 0 400 400" aria-hidden="true">
@@ -306,7 +306,7 @@ h1{font:700 clamp(54px,10vw,104px)/.95 Fredoka,system-ui,sans-serif;letter-spaci
 <rect x="50" y="330" width="280" height="14" rx="7" fill="#FF28C8" stroke="#0D1118" stroke-width="3"/>
 <use href="#cat" class="cb" transform="translate(357.5,135) scale(-1.25,1.25)"/>
 </svg>
-<p class="cap" style="right:4%;top:4%;--w:72%;--d:.4s"><span lang="pt">Gato B. Coleira magenta: só ativa o que é magenta.</span><span lang="en">Cat B. Magenta collar: only magenta things answer to it.</span></p>
+<p class="cap" style="right:4%;top:4%;--w:72%;--d:.4s"><span lang="pt">Esta é a Glitch. Coleira magenta: só ativa o que é magenta.</span><span lang="en">This is Glitch. Magenta collar: only magenta things answer to her.</span></p>
 </figure>
 </div>
 
@@ -559,9 +559,9 @@ const root=document.documentElement;
 const art=document.getElementById('art');
 const txt=document.getElementById('stepTxt');
 const T={
-pt:{s0:'O Capitão segue o barulho. Faz o Gato B miar.',s1:'Está na poça! O Gato A puxa o cabo ciano.',s2:'Atordoado! Pisem os dois botões ao mesmo tempo.',s2b:'Falta o outro botão!',s2c:'Tem de ser ao mesmo tempo. Outra vez!',s3:'Desligado! No jogo são três voltas, e ele fica mais rápido a cada uma.'},
-br:{s0:'O Capitão segue o barulho. Faça o Gato B miar.',s1:'Ele está na poça! O Gato A puxa o cabo ciano.',s2:'Atordoado! Pisem nos dois botões ao mesmo tempo.',s2b:'Falta o outro botão!',s2c:'Tem que ser ao mesmo tempo. De novo!',s3:'Desligado! No jogo são três rodadas, e ele fica mais rápido a cada uma.'},
-en:{s0:'Captain Cage follows noise. Make Cat B meow.',s1:'He is in the puddle! Cat A pulls the cyan cable.',s2:'Stunned! Step on both buttons at the same time.',s2b:'Now the other button!',s2c:'It has to be at the same time. Again!',s3:'Shut down! In the game it takes three rounds, and he gets faster each time.'}
+pt:{s0:'O Capitão segue o barulho. Faz a Glitch miar.',s1:'Está na poça! O Píxel puxa o cabo ciano.',s2:'Atordoado! Pisem os dois botões ao mesmo tempo.',s2b:'Falta o outro botão!',s2c:'Tem de ser ao mesmo tempo. Outra vez!',s3:'Desligado! No jogo são três voltas, e ele fica mais rápido a cada uma.'},
+br:{s0:'O Capitão segue o barulho. Faça a Glitch miar.',s1:'Ele está na poça! O Pixel puxa o cabo ciano.',s2:'Atordoado! Pisem nos dois botões ao mesmo tempo.',s2b:'Falta o outro botão!',s2c:'Tem que ser ao mesmo tempo. De novo!',s3:'Desligado! No jogo são três rodadas, e ele fica mais rápido a cada uma.'},
+en:{s0:'Captain Cage follows noise. Make Glitch meow.',s1:'He is in the puddle! Pixel pulls the cyan cable.',s2:'Stunned! Step on both buttons at the same time.',s2b:'Now the other button!',s2c:'It has to be at the same time. Again!',s3:'Shut down! In the game it takes three rounds, and he gets faster each time.'}
 };
 let step=0,lang='pt',msg='s0',timer=null;
 const pressed={c:false,m:false};
