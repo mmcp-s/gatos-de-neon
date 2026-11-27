@@ -18,8 +18,9 @@
 *{box-sizing:border-box;min-width:0}
 html,body{margin:0}
 body{background:radial-gradient(#1A2230 1.2px,transparent 1.7px) 0 0/11px 11px var(--bg);color:var(--ink);font:400 17px/1.5 Nunito,system-ui,sans-serif;overflow-x:clip}
-html[data-lang=pt] [lang=en]{display:none}
-html[data-lang=en] [lang=pt]{display:none}
+html[data-lang=pt] [lang=en],html[data-lang=pt] [lang="pt-BR"]{display:none}
+html[data-lang=br] [lang=en],html[data-lang=br] [lang="pt-PT"]{display:none}
+html[data-lang=en] [lang=pt],html[data-lang=en] [lang="pt-PT"],html[data-lang=en] [lang="pt-BR"]{display:none}
 .band{padding-block:clamp(24px,4vw,48px);padding-left:max(4vw,16px);padding-right:max(4vw,16px)}
 .wrap{max-width:900px;margin:0 auto}
 #prog{position:fixed;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--cy),var(--mg));transform-origin:0 50%;transform:scaleX(0);z-index:10}
@@ -28,7 +29,7 @@ h1{font:700 clamp(54px,10vw,104px)/.95 Fredoka,system-ui,sans-serif;letter-spaci
 .sub{font:600 clamp(19px,2.4vw,24px)/1.3 Fredoka,system-ui,sans-serif;margin:12px 0 4px}
 .lead{margin:0;color:var(--muted);max-width:60ch}
 .langs{display:flex;border:2px solid var(--ink);border-radius:999px;overflow:hidden}
-.langs button{font:800 15px/1 Nunito,sans-serif;min-height:44px;min-width:56px;padding:0 14px;background:transparent;color:var(--ink);border:0;cursor:pointer}
+.langs button{font:800 15px/1 Nunito,sans-serif;min-height:44px;min-width:56px;padding:0 12px;background:transparent;color:var(--ink);border:0;cursor:pointer}
 .langs button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
 .langs button:focus-visible{outline:3px solid var(--am);outline-offset:-3px}
 .comic{display:grid;gap:clamp(12px,2vw,18px)}
@@ -180,7 +181,9 @@ h1{font:700 clamp(54px,10vw,104px)/.95 Fredoka,system-ui,sans-serif;letter-spaci
 <ellipse cx="203" cy="58" rx="6" ry="7.5" style="fill:var(--eye)"/>
 <ellipse cx="204.5" cy="58" rx="1.8" ry="5" fill="#0D1118"/>
 <circle cx="201" cy="55" r="1.8" fill="#fff"/>
-<path d="M164 86L172 106" style="stroke:var(--eye)" stroke-width="8" stroke-linecap="round"/>
+<path d="M166 80Q174 100 196 94" fill="none" stroke="#0D1118" stroke-width="13" stroke-linecap="round"/>
+<path d="M166 80Q174 100 196 94" fill="none" style="stroke:var(--eye)" stroke-width="8" stroke-linecap="round"/>
+<circle cx="183" cy="104" r="5.5" fill="#FFD27A" stroke="#0D1118" stroke-width="2.5"/>
 </g>
 <g id="box">
 <polygon points="4,0 116,0 120,4 120,80 0,80 0,4" fill="#C9A36E" stroke="#0D1118" stroke-width="3" stroke-linejoin="round"/>
@@ -234,10 +237,11 @@ h1{font:700 clamp(54px,10vw,104px)/.95 Fredoka,system-ui,sans-serif;letter-spaci
 <div>
 <h1>Gatos de Néon</h1>
 <p class="sub"><span lang="pt">Episódio 1: a cidade e os esgotos</span><span lang="en">Episode 1: the city and the sewers</span></p>
-<p class="lead"><span lang="pt">Desce para ler. A meio, os gatos vão precisar de ti.</span><span lang="en">Scroll to read. Halfway through, the cats will need your help.</span></p>
+<p class="lead"><span lang="pt-PT">Desce para ler. A meio, os gatos vão precisar de ti.</span><span lang="pt-BR">Role a página para ler. No meio da história, os gatos vão precisar de você.</span><span lang="en">Scroll to read. Halfway through, the cats will need your help.</span></p>
 </div>
-<div class="langs" role="group" aria-label="Língua / Language">
-<button type="button" id="lpt" aria-pressed="true">PT</button>
+<div class="langs" role="group" aria-label="Idioma / Language">
+<button type="button" id="lpt" aria-pressed="true">PT-PT</button>
+<button type="button" id="lbr" aria-pressed="false">PT-BR</button>
 <button type="button" id="len" aria-pressed="false">EN</button>
 </div>
 </div>
@@ -275,8 +279,8 @@ h1{font:700 clamp(54px,10vw,104px)/.95 Fredoka,system-ui,sans-serif;letter-spaci
 <use href="#cat" class="cb" transform="translate(463.8,277.4) scale(-.26,.26)"/>
 <rect class="rain" x="-40" y="-60" width="880" height="620" fill="url(#rain)"/>
 </svg>
-<p class="cap" style="left:3%;top:4%;--w:38%"><span lang="pt">Uma cidade cyberpunk, à escala de gato.</span><span lang="en">A cyberpunk city, at cat scale.</span></p>
-<p class="cap" style="right:3%;bottom:5%;--w:40%;--d:.8s"><span lang="pt">Caixas, canos e letreiros são o caminho.</span><span lang="en">Boxes, pipes and signs are the way up.</span></p>
+<p class="cap" style="left:3%;top:4%;--w:44%"><span lang="pt">Uma cidade cyberpunk, cheia de caminhos que só um gato encontra.</span><span lang="en">A cyberpunk city, full of paths only a cat can find.</span></p>
+<p class="cap" style="right:3%;bottom:5%;--w:50%;--d:.8s"><span lang="pt">Do beco ao telhado, de caixa em caixa, de cano em cano.</span><span lang="en">From alley to rooftop, box to box, pipe to pipe.</span></p>
 </figure>
 
 <div class="row">
@@ -329,8 +333,8 @@ h1{font:700 clamp(54px,10vw,104px)/.95 Fredoka,system-ui,sans-serif;letter-spaci
 <use href="#cat" class="ca" transform="translate(128,349.6) scale(.4)"/>
 <use href="#cat" class="cb" transform="translate(388,357.6) scale(.4)"/>
 </svg>
-<p class="cap" style="left:3%;top:4%;--w:42%"><span lang="pt">Sozinho, nenhum passa. A dois, abrem caminho.</span><span lang="en">Alone, neither gets through. Together, they open the way.</span></p>
-<p class="cap" style="right:3%;top:4%;--w:36%;--d:.7s"><span lang="pt">Sem chat: um miau e uma pata chegam.</span><span lang="en">No chat needed: a meow and a paw will do.</span></p>
+<p class="cap" style="left:3%;top:4%;--w:42%"><span lang="pt-PT">Sozinho, nenhum passa. A dois, abrem caminho.</span><span lang="pt-BR">Sozinho, nenhum passa. Juntos, abrem caminho.</span><span lang="en">Alone, neither gets through. Together, they open the way.</span></p>
+<p class="cap" style="right:3%;top:4%;--w:36%;--d:.7s"><span lang="pt-PT">Sem chat: um miau e uma pata chegam.</span><span lang="pt-BR">Sem chat: um miado e uma pata bastam.</span><span lang="en">No chat needed: a meow and a paw will do.</span></p>
 <p class="bub" style="left:53%;top:50%;--d:1.1s"><span lang="pt">Miau!</span><span lang="en">Meow!</span></p>
 </figure>
 
@@ -351,7 +355,7 @@ h1{font:700 clamp(54px,10vw,104px)/.95 Fredoka,system-ui,sans-serif;letter-spaci
 <polygon class="sweep" points="400,10 110,400 270,400" fill="url(#cone2)"/>
 <rect class="rain" x="-40" y="-60" width="480" height="520" fill="url(#rain)"/>
 </svg>
-<p class="cap" style="left:4%;top:4%;--w:70%"><span lang="pt">Mas a cidade tem dono. Os robôs da polícia caçam gatos de néon.</span><span lang="en">But the city has an owner. Police robots hunt neon cats.</span></p>
+<p class="cap" style="left:4%;top:4%;--w:70%"><span lang="pt-PT">Mas a cidade tem dono. Os robôs da polícia caçam gatos de néon.</span><span lang="pt-BR">Mas a cidade tem dono. Os robôs da polícia caçam gatos de neon.</span><span lang="en">But the city has an owner. Police robots hunt neon cats.</span></p>
 <p class="bub" style="left:44%;top:49%;--d:.9s"><span lang="pt">miau…</span><span lang="en">meow…</span></p>
 </figure>
 <figure class="panel s">
@@ -364,8 +368,8 @@ h1{font:700 clamp(54px,10vw,104px)/.95 Fredoka,system-ui,sans-serif;letter-spaci
 <use href="#cap" transform="translate(72,59) scale(1.15)"/>
 <rect class="rain" x="-40" y="-60" width="480" height="520" fill="url(#rain)"/>
 </svg>
-<p class="cap" style="left:4%;top:4%;--w:72%"><span lang="pt">O Capitão Gaiola. Não se luta com ele: engana-se.</span><span lang="en">Captain Cage. You don't fight him: you outsmart him.</span></p>
-<p class="rob dr" style="left:4%;top:39%;--w:34%;--d:.8s"><span lang="pt">GATO DETETADO.</span><span lang="en">CAT DETECTED.</span></p>
+<p class="cap" style="left:4%;top:4%;--w:72%"><span lang="pt-PT">O Capitão Gaiola. Não se luta contra ele sem antes o enganar.</span><span lang="pt-BR">O Capitão Gaiola. Não dá para lutar contra ele sem antes enganá-lo.</span><span lang="en">Captain Cage. You can't fight him without outsmarting him first.</span></p>
+<p class="rob dr" style="left:4%;top:39%;--w:34%;--d:.8s"><span lang="pt-PT">GATO DETETADO.</span><span lang="pt-BR">GATO DETECTADO.</span><span lang="en">CAT DETECTED.</span></p>
 <p class="sfx" style="left:3%;bottom:5%;--d:.4s"><span lang="pt">CLANC… CLANC…</span><span lang="en">CLANK… CLANK…</span></p>
 </figure>
 </div>
@@ -405,7 +409,7 @@ h1{font:700 clamp(54px,10vw,104px)/.95 Fredoka,system-ui,sans-serif;letter-spaci
 </svg>
 <button type="button" class="act mg" id="bMeow" style="left:3%;top:33%"><span lang="pt">Miar</span><span lang="en">Meow</span></button>
 <p class="bub dr" id="meowB" style="left:3%;top:33%"><span lang="pt">MIAU!</span><span lang="en">MEOW!</span></p>
-<p class="rob dr" id="robQ" style="left:24%;top:6%;--w:30%"><span lang="pt">SOM DETETADO.</span><span lang="en">NOISE DETECTED.</span></p>
+<p class="rob dr" id="robQ" style="left:24%;top:6%;--w:30%"><span lang="pt-PT">SOM DETETADO.</span><span lang="pt-BR">SOM DETECTADO.</span><span lang="en">NOISE DETECTED.</span></p>
 <button type="button" class="act" id="bCable" style="right:2%;top:6%"><span lang="pt">Puxar o cabo</span><span lang="en">Pull the cable</span></button>
 <p class="sfx" id="zap" style="left:26%;top:30%;--r:-10deg">ZZZAP!</p>
 <button type="button" class="act" id="bC" style="left:33%;top:48%" aria-pressed="false"><span lang="pt">Ciano</span><span lang="en">Cyan</span></button>
@@ -438,7 +442,7 @@ h1{font:700 clamp(54px,10vw,104px)/.95 Fredoka,system-ui,sans-serif;letter-spaci
 <use href="#cat" class="ca" transform="translate(123.4,334.1) scale(.32)"/>
 <rect class="rain" x="-40" y="-60" width="880" height="620" fill="url(#rain)"/>
 </svg>
-<p class="cap" style="left:3%;top:4%;--w:44%"><span lang="pt">A carrinha abre-se. Um gato branco foge… pelo esgoto.</span><span lang="en">The van opens. A white cat runs… down the drain.</span></p>
+<p class="cap" style="left:3%;top:4%;--w:44%"><span lang="pt-PT">A carrinha abre-se. Um gato branco foge… pelo esgoto.</span><span lang="pt-BR">A van se abre. Um gato branco foge… pelo esgoto.</span><span lang="en">The van opens. A white cat runs… down the drain.</span></p>
 <p class="bub" style="left:12%;top:40%;--d:.9s"><span lang="pt">Miau?</span><span lang="en">Meow?</span></p>
 <p class="cap" style="right:3%;bottom:5%;--w:40%;--d:1.4s"><span lang="pt">Os outros gatos foram levados lá para baixo.</span><span lang="en">The other cats were taken down below.</span></p>
 <div class="night"><p><span lang="pt">O Capitão ainda está ligado.</span><span lang="en">Captain Cage is still switched on.</span></p><button type="button" class="btn" id="back"><span lang="pt">Voltar à luta</span><span lang="en">Back to the fight</span></button></div>
@@ -491,7 +495,7 @@ h1{font:700 clamp(54px,10vw,104px)/.95 Fredoka,system-ui,sans-serif;letter-spaci
 <rect x="60" y="400" width="12" height="24" fill="#8A5E3E" stroke="#0D1118" stroke-width="2"/><rect x="190" y="400" width="12" height="24" fill="#8A5E3E" stroke="#0D1118" stroke-width="2"/>
 </svg>
 <p class="cap" style="left:3%;top:4%;--w:42%"><span lang="pt">Nos esgotos, a Draga trabalha. E escuta.</span><span lang="en">In the sewers, the Draga, a giant drainage pump, works. And listens.</span></p>
-<p class="cap" style="right:3%;bottom:4%;--w:40%;--d:1s"><span lang="pt">Aqui não se luta: esconde-te e não faças barulho.</span><span lang="en">No fighting here: hide, and don't make a sound.</span></p>
+<p class="cap" style="right:3%;bottom:4%;--w:40%;--d:1s"><span lang="pt-PT">Aqui não se luta: esconde-te e não faças barulho.</span><span lang="pt-BR">Aqui não tem luta: se esconda e não faça barulho.</span><span lang="en">No fighting here: hide, and don't make a sound.</span></p>
 <p class="sfx" style="right:2%;top:30%;--d:.5s;--r:4deg;font-size:clamp(22px,5cqw,40px)">FFFHHH…</p>
 <div class="night"></div>
 </figure>
@@ -536,15 +540,15 @@ h1{font:700 clamp(54px,10vw,104px)/.95 Fredoka,system-ui,sans-serif;letter-spaci
 <section class="band cta">
 <div class="wrap">
 <h2>Gatos de Néon</h2>
-<p class="pitch"><span lang="pt">Um obby cooperativo para dois na Roblox. Chama alguém, escolhe uma cor e sobe a cidade a dois.</span><span lang="en">A two-player co-op obby on Roblox. Bring someone, pick a colour and climb the city together.</span></p>
+<p class="pitch"><span lang="pt-PT">Um obby cooperativo para dois na Roblox. Chama alguém, escolhe uma cor e sobe a cidade a dois.</span><span lang="pt-BR">Um obby cooperativo para dois no Roblox. Chame alguém, escolha uma cor e suba a cidade em dupla.</span><span lang="en">A two-player co-op obby on Roblox. Bring someone, pick a colour and climb the city together.</span></p>
 <ul class="lv">
 <li><b><span lang="pt">Nível 1: a cidade</span><span lang="en">Level 1: the city</span></b><span><span lang="pt">Becos, telhados e o Capitão Gaiola</span><span lang="en">Alleys, rooftops and Captain Cage</span></span></li>
 <li><b><span lang="pt">Nível 2: os esgotos</span><span lang="en">Level 2: the sewers</span></b><span><span lang="pt">Válvulas, água e a Draga</span><span lang="en">Valves, water and the Draga</span></span></li>
 <li><b><span lang="pt">Nível 3: o bairro vertical</span><span lang="en">Level 3: the vertical district</span></b><span><span lang="pt">Em construção</span><span lang="en">In the works</span></span></li>
 </ul>
 <div class="endrow">
-<button type="button" class="btn" id="again"><span lang="pt">Ler outra vez</span><span lang="en">Read again</span></button>
-<p><span lang="pt">Ilustrações feitas para esta BD a partir do documento de design. Não são capturas do jogo.</span><span lang="en">Illustrations drawn for this comic from the design document. They are not in-game screenshots.</span></p>
+<button type="button" class="btn" id="again"><span lang="pt-PT">Ler outra vez</span><span lang="pt-BR">Ler de novo</span><span lang="en">Read again</span></button>
+<p><span lang="pt-PT">Ilustrações feitas para esta BD a partir do documento de design. Não são capturas do jogo.</span><span lang="pt-BR">Ilustrações feitas para este quadrinho a partir do documento de design. Não são capturas de tela do jogo.</span><span lang="en">Illustrations drawn for this comic from the design document. They are not in-game screenshots.</span></p>
 </div>
 </div>
 </section>
@@ -556,6 +560,7 @@ const art=document.getElementById('art');
 const txt=document.getElementById('stepTxt');
 const T={
 pt:{s0:'O Capitão segue o barulho. Faz o Gato B miar.',s1:'Está na poça! O Gato A puxa o cabo ciano.',s2:'Atordoado! Pisem os dois botões ao mesmo tempo.',s2b:'Falta o outro botão!',s2c:'Tem de ser ao mesmo tempo. Outra vez!',s3:'Desligado! No jogo são três voltas, e ele fica mais rápido a cada uma.'},
+br:{s0:'O Capitão segue o barulho. Faça o Gato B miar.',s1:'Ele está na poça! O Gato A puxa o cabo ciano.',s2:'Atordoado! Pisem nos dois botões ao mesmo tempo.',s2b:'Falta o outro botão!',s2c:'Tem que ser ao mesmo tempo. De novo!',s3:'Desligado! No jogo são três rodadas, e ele fica mais rápido a cada uma.'},
 en:{s0:'Captain Cage follows noise. Make Cat B meow.',s1:'He is in the puddle! Cat A pulls the cyan cable.',s2:'Stunned! Step on both buttons at the same time.',s2b:'Now the other button!',s2c:'It has to be at the same time. Again!',s3:'Shut down! In the game it takes three rounds, and he gets faster each time.'}
 };
 let step=0,lang='pt',msg='s0',timer=null;
@@ -568,8 +573,10 @@ const io='IntersectionObserver' in window?new IntersectionObserver(es=>{for(cons
 const watch=list=>list.forEach(p=>{p.classList.remove('play');if(io)io.observe(p);else p.classList.add('play')});
 const clearPress=()=>{pressed.c=pressed.m=false;[bC,bM].forEach(b=>{b.classList.remove('on');b.setAttribute('aria-pressed','false')});[kC,kM].forEach(k=>k.classList.remove('on'))};
 const setStep=n=>{step=n;art.dataset.step=String(n);clearTimeout(timer);clearPress();root.classList.toggle('won',n>=3);say('s'+n)};
-const setLang=l=>{lang=l==='en'?'en':'pt';root.dataset.lang=lang;root.lang=lang==='en'?'en':'pt-PT';document.getElementById('lpt').setAttribute('aria-pressed',String(lang==='pt'));document.getElementById('len').setAttribute('aria-pressed',String(lang==='en'));say(msg);try{localStorage.setItem('gdn-lang',lang)}catch(e){}};
+const LANGS={pt:'pt-PT',br:'pt-BR',en:'en'};
+const setLang=l=>{lang=LANGS[l]?l:'pt';root.dataset.lang=lang;root.lang=LANGS[lang];for(const k of Object.keys(LANGS))document.getElementById('l'+k).setAttribute('aria-pressed',String(lang===k));say(msg);try{localStorage.setItem('gdn-lang',lang)}catch(e){}};
 document.getElementById('lpt').addEventListener('click',()=>setLang('pt'));
+document.getElementById('lbr').addEventListener('click',()=>setLang('br'));
 document.getElementById('len').addEventListener('click',()=>setLang('en'));
 document.getElementById('bMeow').addEventListener('click',()=>{if(step===0)setStep(1)});
 document.getElementById('bCable').addEventListener('click',()=>{if(step===1)setStep(2)});
@@ -593,6 +600,7 @@ const start=d=>{
 let l=d&&d.lang;
 if(!l){try{l=localStorage.getItem('gdn-lang')}catch(e){}}
 if(location.hash==='#en')l='en';
+if(location.hash==='#br')l='br';
 setLang(l||'pt');
 setStep(d&&d.step>=0&&d.step<=3?d.step:0);
 watch(panels);onScroll();
